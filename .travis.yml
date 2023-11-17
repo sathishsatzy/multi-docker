@@ -1,0 +1,16 @@
+language: generic
+sudo: required
+servives:
+  - docker
+
+before install:
+  - docker build -t satzy/react-test -f ./client/Dockerfile.dev
+
+script:
+  - docker run -e CI=true satzy/react-test npm test
+
+after_success:
+  - docker build -t satzy/multi-client ./client
+  - docker build -t satzy/multi-nginx ./nginx
+  - docker build -t satzy/multi-server ./server
+  - docker build -t satzy/multi-worker ./worker
