@@ -4,19 +4,19 @@ servives:
   - docker
 
 before install:
-  - docker build -t satzy/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t sathishsatzy/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true satzy/react-test npm test
+  - docker run -e CI=true sathishsatzy/react-test npm test
 
 after_success:
-  - docker build -t satzy/multi-client ./client
-  - docker build -t satzy/multi-nginx ./nginx
-  - docker build -t satzy/multi-server ./server
-  - docker build -t satzy/multi-worker ./worker
+  - docker build -t sathishsatzy/multi-client ./client
+  - docker build -t sathishsatzy/multi-nginx ./nginx
+  - docker build -t sathishsatzy/multi-server ./server
+  - docker build -t sathishsatzy/multi-worker ./worker
 
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push satzy/multi-client 
-  - docker push satzy/multi-nginx   
-  - docker push satzy/multi-server
-  - docker push satzy/multi-worker
+  - docker push sathishsatzy/multi-client 
+  - docker push sathishsatzy/multi-nginx   
+  - docker push sathishsatzy/multi-server
+  - docker push sathishsatzy/multi-worker
