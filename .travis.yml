@@ -4,7 +4,7 @@ servives:
   - docker
 
 before install:
-  - docker build -t satzy/react-test -f ./client/Dockerfile.dev
+  - docker build -t satzy/react-test -f ./client/Dockerfile.dev ./client
 
 script:
   - docker run -e CI=true satzy/react-test npm test
